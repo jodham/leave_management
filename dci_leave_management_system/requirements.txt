@@ -1,0 +1,12 @@
+asgiref==3.5.2
+backports.zoneinfo==0.2.1
+convertdate==2.4.0
+Django==4.1.2
+django-crispy-forms==1.14.0
+hijri-converter==2.2.4
+holidays==0.17.2
+korean-lunar-calendar==0.3.1
+PyMeeus==0.5.11
+python-dateutil==2.8.2
+six==1.16.0
+sqlparse==0.4.3
