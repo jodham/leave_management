@@ -1,0 +1,79 @@
+{%extends 'leave_management_app/base.html'%}
+{%block title%}Dashboard{%endblock title%}
+{%block content%}
+<div class="row p-4" style="height: 95vh; width: 100%; background-color: white;">
+{%block navbar%}
+    {%include 'navigation/sidenav.html'%}
+{%endblock navbar%}
+    <div class="col-lg-8 mt-3 ml-5 shadow-lg">
+        <div class="py-5 text-center"><label class="text-info h4">Admin Dashboard</label></div>
+        <div class="row">
+
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-lg p-4 rounded bg-white">
+                <div class="icon text-danger text-center">
+                    <i class="fa fa-group" aria-hidden="true"></i>
+                </div>
+                    <h3 class="text-center">Employees</h3>
+                    <p class="text-center">
+                        Available number of Employees
+                        <hr class="bg-info">
+                       <span class="h2 text-center"> {{employees_count}}</span>
+                        <br>
+                        <a class="text-decoration-none" href="{%url 'employee_list'%}">View Employees</a>
+                    </p>
+            </div>
+        </div>
+
+       <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-lg p-4 rounded bg-white">
+                <div class="icon text-danger text-center">
+                    <i class="fa fa-umbrella" aria-hidden="true"></i>
+                </div>
+                    <h3 class="text-center">Leaves</h3>
+                    <p class="text-center">
+                        Available number of Leaves
+                        <hr class="bg-info">
+                       <span class="h2 text-center"> {{leaves_count}}</span>
+                        <br>
+                        <a class="text-decoration-none" href="{%url 'leave_list'%}">View Leaves</a>
+                    </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-lg p-4 rounded bg-white">
+                <div class="icon text-danger text-center">
+                    <i class="fa fa-book" aria-hidden="true"></i>
+                </div>
+                    <h3 class="text-center">Applications</h3>
+                    <p class="text-center">
+                        Current Year Applications
+                        <hr class="bg-info">
+                       <span class="h2 text-center"> {{applications_count}}</span>
+                        <br>
+                        <a class="text-decoration-none" href="{%url 'current_year_applications'%}">View Applications</a>
+                    </p>
+            </div>
+        </div>
+
+         <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-lg p-4 rounded bg-white">
+                <div class="icon text-danger text-center">
+                    <i class="fa fa-university" aria-hidden="true"></i>
+                </div>
+                    <h3 class="text-center">Departments</h3>
+                    <p class="text-center">
+                        Available number of Departments
+                        <hr class="bg-info">
+                       <span class="h2 text-center"> {{departments_count}}</span>
+                        <br>
+                        <a class="text-decoration-none" href="{%url 'department_list'%}">View departments</a>
+                    </p>
+            </div>
+        </div>
+
+        </div>
+    </div>
+</div>
+{%endblock content%}

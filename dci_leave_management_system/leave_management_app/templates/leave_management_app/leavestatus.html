@@ -1,0 +1,169 @@
+{%extends 'leave_management_app/base.html'%}
+{%block title%}Manage Department{%endblock title%}
+{%load crispy_forms_tags%}
+{%block content%}
+<div class="row p-4 mb-4"  style="height: 95vh; width: 100%; background-color: white; background-attachment: fixed;">
+    {%block navbar%}
+        {%include 'navigation/sidenav.html'%}
+    {%endblock navbar%}
+
+	<div class="col-lg-8 mt-3 ml-5 shadow-lg content-align-center">
+		 <div class="py-3 text-center"><label class="text-info h4">{{emp.employee_firstname}} : Leave Status</label></div>
+		<div class="container-fluid">
+    	  <!--------------------------------------------leave-status------------------------------------>
+			<div class="py-2 text-center mt-3"><label class="text-info h6">{{previous_financialyear}}</label></div>
+		  <div class="row shadow-lg justify-content-center">
+			  <div class="col">
+				<div class="row mt-3 pl-0 py-2">
+                    <div class="col h5">Annual Leave</div>
+                    <div class="col"><label>Financial year :</label> {{previous_financialyear}}</div>
+
+                </div>
+				  {%if total_days_applied_previous_year == 0%}
+					<div class="py-3 text-center mt-3">
+						<label class="text-muted h6">
+							No leave application in <span class="h6">{{previous_financialyear}}</span>
+						</label>
+					</div>
+				  	<hr>
+					<div class="py-2 text-center">
+						<label class="h6 text-success">Days Carried Forward :</label>
+						{{total_days_carried_forward}}
+					</div>
+				  {%else%}
+				   <div class="row ml-2 mr-2 mb-3">
+						<div class="col-md-12 p-2 shadow-sm">
+							<table class="table">
+								<thead>
+									<tr>
+									  <th scope="col">P.no</th>
+
+									  <th scope="col">Period</th>
+									  <th scope="col">Leave type</th>
+									  <th scope="col">Days Applied</th>
+									  <th scope="col">start date</th>
+									  <th scope="col">End date</th>
+									  <th scope="col">manage</th>
+									  <!--<th scope="col">Job Title</th>-->
+									</tr>
+							  </thead>
+							  <tbody>
+							   {%for application in previous_year_applications %}
+
+									<tr>
+									  <td><a href="#">{{application.Applicant_id}}</a></td>
+										<td>{{application.financial_year}}</td>
+										<td>{{application.leave_type}}</td>
+										<td>{{application.no_of_days_applied}}</td>
+									  <td>{{application.leave_starting_date}}</td>
+									  <td>{{application.leave_end_date}}</td>
+
+									   <td><a class="" href="{%url 'leave_application_detail' application.id%}">view</a></td>
+									</tr>
+							   <div class="hr"></div>
+
+							   {% endfor %}
+							  </tbody>
+							</table>
+							<hr>
+							<div class="py-2 text-center">
+								<label class="h5 text-success">Days Carried Forward :</label>
+								{{total_days_carried_forward}}
+							</div>
+						</div>
+				   </div>
+				  {%endif%}
+			  </div>
+		  </div>
+			  <!---------------------------------current-year-applications---------------------------->
+			<div class="py-2 text-center mt-3"><label class="text-info h5">{{year}}</label></div>
+		   <div class="row shadow-lg justify-content-center mt-2">
+			  <div class="col">
+				  <div class="row py-2 mt-3 pl-0">
+                    <div class="col h6">Annual Leave</div>
+                    <div class="col"><label>Financial year :</label> {{year}}</div>
+
+                </div>
+
+				  {%if total_current_year_applied_days == 0%}
+					<div class="py-3 text-center mt-3">
+						<label class="text-muted h6">
+							No leave application in <span class="h6">{{year}}</span>
+						</label>
+					</div>
+				  	<hr>
+					<div class="py-2 text-center">
+						<label class="h6 text-danger">Days applied this year : </label>
+						{{total_current_year_applied_days}}
+					</div>
+					<div class="py-2 text-center">
+						<label class="h6 text-success">Leave Eligible Days :</label>
+						{{annual_leave_eligible_days}}
+					</div>
+				  {%else%}
+				   <div class="row ml-2 mr-2">
+						<div class="col-md-12 p-2 shadow-sm">
+							<table class="table">
+								<thead>
+									<tr>
+									  <th scope="col">P.no</th>
+
+									  <th scope="col">Period</th>
+									  <th scope="col">Leave type</th>
+									  <th scope="col">Days Applied</th>
+									  <th scope="col">start date</th>
+									  <th scope="col">End date</th>
+									  <th scope="col">manage</th>
+									  <!--<th scope="col">Job Title</th>-->
+									</tr>
+							  </thead>
+							  <tbody>
+							   {%for application in employee_current_year_applications%}
+									<tr>
+									  <td><a href="#">{{application.Applicant_id}}</a></td>
+
+										<td>{{application.financial_year}}</td>
+										<td>{{application.leave_type}}</td>
+										<td>{{application.no_of_days_applied}}</td>
+									  <td>{{application.leave_starting_date}}</td>
+									  <td>{{application.leave_end_date}}</td>
+
+									   <td><a class="" href="{%url 'leave_application_detail' application.id%}">view</a></td>
+									</tr>
+							   <div class="hr"></div>
+
+							   {% endfor %}
+							  </tbody>
+							</table>
+							{%endif%}
+							<hr>
+							<div class="row">
+
+									<div class="col-md-4">
+										<label class="h5 text-danger">Days applied this year :</label>
+										{{total_current_year_applied_days}}
+									</div>
+									<div class="col-md-4">
+										<label class="h5 text-success">Annual Leave Eligible Days : </label>
+										{{annual_leave_eligible_days}}
+									</div>
+									{%if annual_leave_eligible_days > 0%}
+									<div class="col-md-4">
+										<a class="btn btn-success" href="{%url 'create_application' emp.emp_personal_no%}">Apply </a>
+									</div>
+									{%else%}
+									<div class="col-md-4">
+										<label class="text-warning">Exhausted your leave days</label>
+									</div>
+									{%endif%}
+
+							</div>
+						</div>
+				   </div>
+
+			  </div>
+		  </div>
+        </div>
+    </div>
+</div>
+{%endblock content%}

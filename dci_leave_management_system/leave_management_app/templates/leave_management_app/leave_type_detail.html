@@ -1,0 +1,52 @@
+{%extends 'leave_management_app/base.html'%}
+{%load static%}
+{%block title%}Leave Detail{%endblock title%}
+{%block content%}
+<div class="row p-4" style="height: 95vh; width: 100%; background-color: white; background-attachment: fixed;">
+    {%block navbar%}
+        {%include 'navigation/sidenav.html'%}
+    {%endblock navbar%}
+  <div class="col-lg-8 mt-3 ml-5 shadow-lg">
+    <div class="py-5 text-center user-profile-image">
+        <img src="{%static 'icons/user_icon.png'%}" alt="image"> <br>
+        <label class="h2 text-info">{{object.leave_type_name}}</label>
+        <div class="row mt-3 p-4" >
+            <div class="col-md-5 shadow-lg">
+                <label class="text-center text-info h4 mt-2">Leave information</label>
+                <hr class="bg-info">
+
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5">Leave Name:</div>
+                    <div class="col">{{object.leave_type_name}}</div>
+                </div>
+
+                <div class="row mt-3 pl-0 shadow-sm">
+                    <div class="col h5">Leave duration  :</div>
+                    <div class="col h5">{{object.leave_duration}}</div>
+                </div>
+
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5">Leave Description  :</div>
+                    <div class="col h5">{{object.leave_type_description}}</div>
+                </div>
+            </div>
+
+             <div class="vr bg-dark"></div>
+
+            <div class="col-md-6 shadow-lg ml-3">
+                <label class="text-center text-info h4 mt-2">Additional information</label>
+                <hr class="bg-info">
+
+
+            </div>
+        </div>
+        <div class="row py-5 ml-4 mr-4 shadow-lg rounded">
+            <div class="col-2"><a href="{%url 'leave_list'%}" class="btn btn-secondary"> Back</a></div>
+            <div class="col-2"><a href="{%url 'leave_update' object.id%}" class="btn btn-success"> Update</a></div>
+            <div class="col-2"><a href="#" class="btn btn-danger"> Delete</a></div>
+        </div>
+
+    </div>
+  </div>
+</div>
+{%endblock content%}

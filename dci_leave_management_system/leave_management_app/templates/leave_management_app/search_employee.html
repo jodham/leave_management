@@ -1,0 +1,37 @@
+{%extends 'leave_management_app/base.html'%}
+{%block title%}Search Employee{%endblock title%}
+{%load crispy_forms_tags%}
+{%block content%}
+<div class="row p-4" style="height: 95vh; width: 100%; background-color: white; background-attachment: fixed;">
+    {%block navbar%}
+        {%include 'navigation/sidenav.html'%}
+    {%endblock navbar%}
+
+	<div class="col-lg-8 mt-3 ml-5 shadow-lg content-align-center">
+		 <div class="py-5 text-center"><label class="text-info h4">Search Employee</label></div>
+		  <div class="container-fluid">
+			  <!-----------------------------------------search employee-------------------------------->
+			  <div class="row shadow-lg justify-content-center">
+				  <div class="col-md-6">
+						<form method="POST" action="{%url 'search'%}">
+						{% csrf_token %}
+							<fieldset class="form-group">
+								<legend class="border-bottom mb-4 text-center">enter Pf no. of first name</legend>
+									<div class="row">
+										<div class="col-6 col-md-6">
+											<input type="search" placeholder="enter pf no/first name" class="form-control me-2" id='pfno'  name="pfno">
+										</div>
+									</div>
+							</fieldset>
+
+								<button class="btn btn-outline-info mt-2 mb-2" type="submit">Search</button>
+						</form>
+
+				  </div>
+			  </div>
+
+		  </div>
+	</div>
+</div>
+
+{%endblock content%}

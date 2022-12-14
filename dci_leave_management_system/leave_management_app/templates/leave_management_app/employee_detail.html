@@ -1,0 +1,86 @@
+{%extends 'leave_management_app/base.html'%}
+{%load static%}
+{%block title%}Employees Detail{%endblock title%}
+{%block content%}
+<div class="row p-4" style="height: 95vh; width: 100%; background-color: white; background-attachment: fixed;">
+    {%block navbar%}
+        {%include 'navigation/sidenav.html'%}
+    {%endblock navbar%}
+  <div class="col-lg-8 mt-3 ml-5 shadow-lg">
+    <div class="py-5 text-center user-profile-image">
+        <img src="{%static 'icons/user_icon.png'%}" alt="image"> <br>
+        <label class="h2 text-info">{{object.employee_firstname}}  {{object.employee_lastname}} </label>
+        <div class="row mt-3 p-4" >
+            <div class="col-md-5 shadow-lg">
+                <label class="text-center text-info h4 mt-2">Personal information</label>
+                <hr class="bg-info">
+
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5">Personal number:</div>
+                    <div class="col">{{object.emp_personal_no}}</div>
+                </div>
+
+                <div class="row mt-3 pl-0 shadow-sm">
+                    <div class="col h5">First Name  :</div>
+                    <div class="col h5">{{object.employee_firstname}}</div>
+                </div>
+
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5">Last Name   :</div>
+                    <div class="col h5">{{object.employee_lastname}}</div>
+                </div>
+
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5 pl-0">Email   :</div>
+                    <div class="col h5">{{object.employee_email}}</div>
+                </div>
+
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5">Gender      :</div>
+                    <div class="col h5">{{object.employee_gender}}</div>
+                </div>
+            </div>
+
+             <div class="vr bg-dark"></div>
+
+            <div class="col-md-6 shadow-lg ml-3">
+                <label class="text-center text-info h4 mt-2">Additional information</label>
+                <hr class="bg-info">
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5 align-left">Department:</div>
+                    <div class="col">{{object.employee_department_id}}</div>
+                </div>
+
+                <div class="row mt-3 pl-0 shadow-sm">
+                    <div class="col h5">Designation:</div>
+                    <div class="col">{{object.employee_designation}}</div>
+                </div>
+
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5">Category:</div>
+                    <div class="col h5">{{object.employee_category}}</div>
+                </div>
+
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5 pl-0">Date Employed:</div>
+                    <div class="col h5">{{object.date_employed}}</div>
+                </div>
+
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5">Date Registered:</div>
+                    <div class="col h5">{{object.date_created}}</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row py-5 ml-4 mr-4 shadow-lg rounded">
+            <div class="col-2"><a href="{%url 'employee_list'%}" class="btn btn-secondary"> Back</a></div>
+            <div class="col-2"><a href="{%url 'employee_update' object.emp_personal_no%}" class="btn btn-success"> Update</a></div>
+            <div class="col-2"><a href="#" class="btn btn-danger"> Delete</a></div>
+            <div class="col-2"><a href="{%url 'leave_status' object.emp_personal_no%}" class="btn btn-info"> Apply Leave</a></div>
+        </div>
+
+    </div>
+  </div>
+</div>
+{%endblock content%}

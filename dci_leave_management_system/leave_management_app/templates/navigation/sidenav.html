@@ -1,0 +1,53 @@
+ <div class="col-lg-2 mt-3 ml-3 bg-dark h-85 shadow-lg">
+        <div class="py-3 text-center"><i class="fa fa-bars text-light" aria-hidden="true"></i></div>
+        <a class="p-3 d-block text-center text-light h2" href="{%url 'dashboard'%}">Dashboard</a>
+        <hr class="bg-light">
+<!--       <div class="py-3">-->
+<!--           <a class='p-3 d-block h3 text-light' href="#">Employees</a>-->
+<!--       </div>-->
+        <div class="dropdown show py-3">
+          <a class="p-3 text-light h3 dropdown-toggle" href="{%url 'employee_list'%}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Employees
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="{%url 'EmployeeRegistration'%}">Add Employee</a>
+            <a class="dropdown-item" href="{%url 'employee_list'%}">All Employees</a>
+          </div>
+        </div>
+        <hr class="bg-info">
+        <div class="dropdown show py-3">
+              <a class="p-3 text-light h3 dropdown-toggle" href="#" role="button" id="dropdownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Leaves
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownLink">
+                <a class="dropdown-item" href="{%url 'leave_create'%}">Add Leave type</a>
+                <a class="dropdown-item" href="{%url 'leave_list'%}">Leave List</a>
+              </div>
+        </div>
+        <hr class="bg-info">
+        <div class="dropdown show py-3">
+              <a class="p-3 text-light h3 dropdown-toggle" href="#" role="button" id="droppdownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Applications
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="droppdownLink">
+                <a class="dropdown-item" href="{%url 'search_employee'%}">Make leave Application</a>
+                <a class="dropdown-item" href="{%url 'current_year_applications'%}">Applied Leaves</a>
+              </div>
+        </div>
+        <hr class="bg-info">
+
+      <div class="dropdown show py-3">
+              <a class="p-3 text-light h3 dropdown-toggle" href="#" role="button" id="drropdownLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Departments
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="drropdownLink">
+                <a class="dropdown-item" href="{%url 'department_create'%}">Add Department</a>
+                <a class="dropdown-item" href="{%url 'department_list'%}">Department List</a>
+              </div>
+        </div>
+        <hr class="bg-info">
+    </div>

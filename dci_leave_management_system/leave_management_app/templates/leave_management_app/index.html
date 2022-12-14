@@ -1,0 +1,28 @@
+{%extends 'leave_management_app/base.html'%}
+{% load static%}
+{%block title%}index{%endblock title%}
+{%block navbar%}
+{%endblock navbar%}
+{%block content%}
+<!------------------------home section start----------------------->
+<section class="home">
+	<div class="container">
+		<div class="row min-vh-100 align-items-center mt-5">
+			<div class="col-md-6 mt-5 mt-md-0">
+				<div class="home-image text-center">
+					<img src="{%static 'icons/employee_image.png'%}" class="mw-100 image-fluid" alt="profile-img">
+				</div>
+			</div>
+			<div class="col-md-6 mt-5 mt-md-0 order-md-first">
+				<div class="home-text">
+					<p class="text-muted mb-1 h4">Hello</p>
+					<h1 class="text-primary text-uppercase">Welcome To DCI Leave Management</h1>
+					<p class="mt-4">View, Track your leave progress and apply your leave here with ease.</p>
+					<a href="{%url 'dashboard'%}" class="btn btn-success px-3 mt-3">Go to Dashboard</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!------------------------home section end------------------------->
+{%endblock content%}

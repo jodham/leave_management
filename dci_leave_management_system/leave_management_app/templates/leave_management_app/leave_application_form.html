@@ -1,0 +1,68 @@
+{%extends 'leave_management_app/base.html'%}
+{%block title%}Manage Department{%endblock title%}
+{%load crispy_forms_tags%}
+{%block content%}
+<div class="row p-4 overflow-auto"  style="height: 95vh; width: 100%; background-color: white; background-attachment: fixed;">
+    {%block navbar%}
+        {%include 'navigation/sidenav.html'%}
+    {%endblock navbar%}
+
+	<div class="col-lg-8 mt-3 ml-5 shadow-lg content-align-center">
+		 <div class="py-3 text-center"><label class="text-info h4">Leave Application For : {{emp.employee_firstname}}</label></div>
+		<div class="container-fluid">
+			 <!-------------------------------- employee-application-form------------------------------>
+			  <div class="row mt-4 shadow-lg justify-content-center">
+				  <div class="col-md-6">
+					<form method="POST">
+						{% csrf_token %}
+						<fieldset class="form-group">
+							<div class="row">
+								<div class="col-6 col-md-6">
+									<label for="application_id">Personal No.</label>
+									<input type="text" value="{{emp.emp_personal_no}}" class="form-control" id="application_id" name="application_id" required="">
+								</div>
+								<div class="col-6 col-md-6">
+									<label for="financial_yr">Financial year</label>
+									<input type="text" value="{{year}}" class="form-control" id='financial_yr' name="financial_yr" required="">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-6 col-md-6">
+									<label for="leavetype">Leave type</label>
+									<p><select name="leave_id" id="leavetype">
+										{%for x in leave_objects%}
+									  	<option class="form-control my-2" value="{{x.id}}">{{x.leave_type_name}}</option>
+										{%endfor%}
+									</select></p>
+								</div>
+
+								<div class="col-6 col-md-6">
+									<label for="days_applied">Days Applied</label>
+									<input type="number" value="" class="form-control" id='days_applied' name="days_applied" required="">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-6 col-md-6">
+									<label for="startdate">Starting Date</label>
+									<input type="date" value="" class="form-control" id='startdate' name="startdate" required="">
+								</div>
+<!--								<div class="col-6 col-md-6">-->
+<!--									<label for="startdate">End date</label>-->
+<!--									<input type="date" value="" class="form-control" id='end date' name="enddate" required="">-->
+<!--								</div>-->
+							</div>
+						</fieldset>
+						<div class="form-group">
+							<button class="btn btn-outline-info mt-2" type="submit">Submit</button>
+						</div>
+					</form>
+				  </div>
+			  </div>
+		  </div>
+	</div>
+</div>
+<script>
+	document.getElementById("main-container").style.overflowY = "hidden";
+	document.getElementById("main-container").style.overflowY = "scroll";
+</script>
+{%endblock content%}

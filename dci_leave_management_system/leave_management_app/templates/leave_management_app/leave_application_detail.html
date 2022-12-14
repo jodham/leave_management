@@ -1,0 +1,71 @@
+{%extends 'leave_management_app/base.html'%}
+{%load static%}
+{%block title%}Employees Detail{%endblock title%}
+{%block content%}
+<div class="row p-4" style="height: 95vh; width: 100%; background-color: white; background-attachment: fixed;">
+    {%block navbar%}
+        {%include 'navigation/sidenav.html'%}
+    {%endblock navbar%}
+  <div class="col-lg-8 mt-3 ml-5 shadow-lg">
+    <div class="py-3 text-center user-profile-image">
+        <img src="{%static 'icons/user_icon.png'%}" alt="image"> <br>
+        <label class="h2 py-2 text-info">{{object.Applicant}}</label>
+        <div class="row mt-3 p-4" >
+            <div class="col-md-5 shadow-lg">
+                <label class="text-center text-info h4 mt-2">Leave information</label>
+                <hr class="bg-info">
+
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5">Applicant number:</div>
+                    <div class="col">{{object.Applicant_id}}</div>
+                </div>
+
+                <div class="row mt-3 pl-0 shadow-sm">
+                    <div class="col h5">Applicant Name  :</div>
+                    <div class="col h5">{{object.Applicant}}</div>
+                </div>
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5 pl-0">Leave type:</div>
+                    <div class="col h5">{{object.leave_type}}</div>
+                </div>
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5 pl-0">financia year:</div>
+                    <div class="col h5">{{object.financial_year}}</div>
+                </div>
+
+            </div>
+            <div class="col-md-6 shadow-lg ml-3">
+                <label class="text-center text-info h4 mt-2">Leave information</label>
+                <hr class="bg-info">
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5 align-left">Days Applied:</div>
+                    <div class="col">{{object.no_of_days_applied}}</div>
+                </div>
+
+                <div class="row mt-3 pl-0 shadow-sm">
+                    <div class="col h5">Application date:</div>
+                    <div class="col">{{object.leave_application_date}}</div>
+                </div>
+
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5">Start date:</div>
+                    <div class="col h5">{{object.leave_starting_date}}</div>
+                </div>
+
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5 pl-0">End date:</div>
+                    <div class="col h5">{{object.leave_end_date}}</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row py-5 ml-4 mr-4 shadow-lg rounded">
+            <div class="col-2"><a href="{%url 'current_year_applications'%}" class="btn btn-secondary"> Back </a></div>
+
+            <div class="col-2"><a href="{%url 'employee_detail' object.Applicant_id%}" class="btn btn-info">View Employee</a></div>
+        </div>
+
+    </div>
+  </div>
+</div>
+{%endblock content%}

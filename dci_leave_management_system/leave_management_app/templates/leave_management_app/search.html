@@ -1,0 +1,71 @@
+{%extends 'leave_management_app/base.html'%}
+{%block title%}Search Employee{%endblock title%}
+{%load crispy_forms_tags%}
+{%block content%}
+<div class="row p-4" style="height: 95vh; width: 100%; background-color: white; background-attachment: fixed;">
+    {%block navbar%}
+        {%include 'navigation/sidenav.html'%}
+    {%endblock navbar%}
+		  <!--------------------------------------------search result----------------------------->
+    	<div class="col-lg-8 mt-3 ml-5 shadow-lg content-align-center">
+			<div class="row py-5">
+				<div class="col-6">
+					<a class="btn btn-secondary" href="{%url 'search_employee'%}">search again</a>
+				</div>
+				<div class="col-6">
+					<label class="text-info h4">Search Result</label>
+				</div>
+			</div>
+			  <div class="container-fluid">
+				  {%if searched_employee%}
+				   <div class="row shadow-lg justify-content-center">
+					  <div class="col">
+						   <div class="row ml-3">
+								<div class="col-md-10 p-2">
+									<table class="table">
+										<thead>
+											<tr>
+											  <th scope="col">P.no</th>
+
+											  <th scope="col">Name</th>
+											  <th scope="col">Email</th>
+											  <th scope="col">Category</th>
+											  <th scope="col">department</th>
+											  <th scope="col">View</th>
+											  <!--<th scope="col">Job Title</th>-->
+											</tr>
+									  </thead>
+									  <tbody>
+									  {%for employee in employee%}
+										<tr>
+											<td><a href="#">{{employee.emp_personal_no}}</a></td>
+											<td>{{employee.fullname}}</td>
+											<td>{{employee.employee_email}}</td>
+											<td>{{employee.employee_category}}</td>
+											<td>{{employee.employee_department_id}}</td>
+											<td><a class="" href="{%url 'employee_detail' employee.emp_personal_no%}">view</a></td>
+										</tr>
+									  {%endfor%}
+									  </tbody>
+									</table>
+								</div>
+						   </div>
+						  {%else%}
+						  <div class="row shadow-lg justify-content-center">
+							  <div class="col">
+								   <div class="row ml-3">
+										<div class="col-md-10 p-2">
+										<div class="py-3 text-muted text-center">
+											No matching results!!!
+										</div>
+										</div>
+								   </div>
+							  </div>
+						  </div>
+						  {%endif%}
+					  </div>
+				   </div>
+			  </div>
+        </div>
+</div>
+{%endblock content%}

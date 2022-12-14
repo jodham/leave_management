@@ -1,0 +1,132 @@
+{%extends 'leave_management_app/base.html'%}
+{%block title%}{{employee.emp_personal_no}}{%endblock title%}
+{%load crispy_forms_tags%}
+{%block content%}
+<div class="row p-4" style="height: 95vh; width: 100%; background-color: white; background-attachment: fixed;">
+        {%block navbar%}
+            {%include 'navigation/sidenav.html'%}
+        {%endblock navbar%}
+    <div class="col-lg-8 mt-3 ml-5 shadow-lg content-align-center">
+        <div class="py-5 text-center"><label class="text-info h4">Application Form</label></div>
+        <div class="container-fluid">
+            <div class="row shadow-lg p-4" id="applicationform">
+                <div class="col-12 text-center h4 py-4">REPUBLIC OF KENYA</div>
+                <div class="col-12 text-center h5 py-2">KENYA POLICE</div>
+                <div class="col-12 text-center h5 ">APPLICATION FOR LEAVE</div>
+
+                <div class="py-4 col-12"><hr class="bg-dark h1"></div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm">
+                            <span>1. No</span>
+                            <span class="ml-4">{{employee.emp_personal_no}}</span>
+                        </div>
+
+                        <div class="col-sm ml-2">
+                           <span>Rank/Grade</span>
+                           <span class="ml-3">{{employee.employee_category}}</span>
+                        </div>
+
+                        <div class="col-sm ml-2">
+                            <span>Name</span>
+                            <span class="ml-3">{{employee.employee_firstname}} {{employee.employee_lastname}}</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                 <div class="container mt-4">
+                    <div class="row">
+                        <div class="col"><span>2. Section/Police Station:</span> </div>
+                        <div class="col text-center">
+                            <i>station</i>
+                        <hr>
+                        </div>
+                    </div>
+                 </div>
+
+                 <div class="container">
+                    <div class="row">
+                        <div class="col"><span>3. Number of days applied for:</span> </div>
+                        <div class="col text-center">
+                            {{application.no_of_days_applied}}
+                            <hr>
+                        </div>
+                    </div>
+                 </div>
+
+                 <div class="container">
+                    <div class="row">
+                        <div class="col"><span>4. Date of last return from leave:</span> </div>
+                        <div class="col text-center">
+                            <i>date</i>
+                            <hr>
+                        </div>
+                    </div>
+                 </div>
+
+                 <div class="container">
+                    <div class="row">
+                        <div class="col"><span>5. Destination:</span> </div>
+                        <div class="col text-center">
+                            <i>destination</i>
+                            <hr>
+                        </div>
+                    </div>
+                 </div>
+
+                 <div class="container">
+                    <div class="row">
+                        <div class="col"><span>6. Leave Adress:</span> </div>
+                        <div class="col text-center">
+                            <i>address</i>
+                            <hr>
+                        </div>
+                    </div>
+                 </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col"><span>7. Nearest Police Station:</span> </div>
+                        <div class="col text-center">
+                            <i>station</i>
+                            <hr>
+                        </div>
+                    </div>
+                 </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col"><span>8. Address for leave salary/cheque:</span> </div>
+                        <div class="col text-center">
+                            <i>address</i>
+                            <hr>
+                        </div>
+                    </div>
+                 </div>
+
+                <div class="col-4 mt-4 float-right">
+                    <hr class="bg-dark">
+                    <label>signature of Applicant</label> <br>
+                    <label>Date</label>
+                </div>
+            </div>
+            <div class="row shadow-sm mt-4">
+                <div class="col-12 text-center">
+                    <button class="btn-info" onclick="printContent('applicationform')">Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+function printContent(applicationform){
+    var restorepage = document.body.innerHTML;
+    var printContent = document.getElementById(applicationform).innerHTML;
+    document.body.innerHTML = printContent;
+    window.print();
+    document.body.innerHTML = restorepage;
+    }
+</script>
+{%endblock content%}
+

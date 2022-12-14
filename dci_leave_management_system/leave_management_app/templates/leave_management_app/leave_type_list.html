@@ -1,0 +1,42 @@
+{%extends 'leave_management_app/base.html'%}
+{%block title%}Leave List{%endblock title%}
+
+    {%block content%}
+<div class="row p-4" style="height: 95vh; width: 100%; background-color: white; background-attachment: fixed;">
+        {%block navbar%}
+            {%include 'navigation/sidenav.html'%}
+        {%endblock navbar%}
+
+    <div class="col-lg-8 mt-3 ml-5 shadow-lg">
+        <div class="py-5 text-center"><label class="text-info h4">Available Leaves</label></div>
+
+            <div class="row ml-3">
+        <div class="col-md-10 p-2 shadow-lg">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">No</th>
+                  <th scope="col">Leave name</th>
+                  <th scope="col">max duration</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Manage</th>
+                </tr>
+              </thead>
+              <tbody>
+              {%for leave in leaves %}
+                <tr>
+                  <td><a href="#">{{leave.id}}</a></td>
+                  <td>{{leave.leave_type_name}}</td>
+                  <td>{{leave.leave_duration}}</td>
+                  <td>{{leave.leave_type_description}}</td>
+                  <td><a class="" href="{%url 'leave_detail' leave.id%}">view</a></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+    </div>
+
+    </div>
+</div>
+    {%endblock content%}
