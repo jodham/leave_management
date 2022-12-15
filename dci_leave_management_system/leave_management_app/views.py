@@ -36,11 +36,28 @@ def EmployeeRegistration(request):
     if request.method == 'POST':
         form = EmployeeCreationForm(request.POST)
         if form.is_valid():
-            form.save()
-            name = form.cleaned_data.get('firstname')
-            sname = form.cleaned_data.get('last_name')
-            fullname = '{} {}'.format(name, sname)
-            messages.success(request, 'successfully registered employee', {fullname})
+            email = form.cleaned_data.get('employee_email')
+            firstname = form.cleaned_data.get('employee_firstname')
+            lastname = form.cleaned_data.get('employee_lastname')
+            sex = form.cleaned_data.get('employee_gender')
+            category = form.cleaned_data.get('employee_category')
+            department = form.cleaned_data.get('employee_department_id')
+            designation = form.cleaned_data.get('employee_designation')
+            pfno = form.cleaned_data.get('emp_personal_no')
+            user = User.objects.create_user(username=email, email=email, password=pfno)
+            print(pfno)
+            user.save()
+
+            employee = Employee()
+            employee.emp_personal_no = pfno
+            employee.employee_email = email
+            employee.employee_firstname = firstname
+            employee.employee_lastname = lastname
+            employee.employee_gender = sex
+            employee.employee_category = category
+            employee.employee_department_id = department
+            employee.employee_designation = designation
+            employee.save()
             return redirect('employee_list')
     else:
         form = EmployeeCreationForm()

@@ -1,4 +1,6 @@
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -53,6 +55,7 @@ class Department(models.Model):
 
 
 class Employee(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.SET_NULL)
     emp_personal_no = models.CharField(max_length=20, primary_key=True)
     employee_firstname = models.CharField(max_length=20)
     employee_lastname = models.CharField(max_length=20)
@@ -75,6 +78,17 @@ class Employee(models.Model):
         return reverse('employee_detail', kwargs={'pk': self.pk})
 
 
+@receiver(post_save, sender=User)
+def create_employee(sender, instance, created, **kwargs):
+    if created:
+        Employee.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_employee(sender, instance, **kwargs):
+    instance.employee.save()
+
+
 class Leave_type(models.Model):
     leave_type_name = models.CharField(choices=leave_category_list, max_length=30)
     leave_duration = models.CharField(default='30/36 days', max_length=30)
@@ -88,7 +102,7 @@ class Leave_type(models.Model):
 
 
 class Leave_application(models.Model):
-    Applicant = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    Applicant = models.ForeignKey(Employee, null=True, on_delete=models.SET_NULL)
     financial_year = models.CharField(max_length=10)
     leave_type = models.ForeignKey(Leave_type, on_delete=models.CASCADE)
     medical_certificate = models.BooleanField(default=False)
@@ -101,4 +115,4 @@ class Leave_application(models.Model):
         return '{}'.format(self.Applicant)
 
     def get_absolute_url(self):
-        return reverse('leave_application_detail', kwargs={'id': self.id})
+        return reverse('leave_application_detail', kwargs={'pk': self.pk})
