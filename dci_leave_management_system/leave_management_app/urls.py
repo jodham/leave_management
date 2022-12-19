@@ -11,6 +11,7 @@ urlpatterns = [
     path('employee/detail/<int:pk>', EmployeeDetailView.as_view(), name='employee_detail'),
     path('employee/update/<int:pk>', EmployeeUpdateView.as_view(), name='employee_update'),
     path('employee/activate/<int:pk>', employeeDeactivate, name='activate'),
+    path('employee/account/', createuseraccount, name='useraccount'),
 
     path('leave/create', LeaveCreateView.as_view(), name='leave_create'),
     path('leave/list', LeaveListView.as_view(), name='leave_list'),

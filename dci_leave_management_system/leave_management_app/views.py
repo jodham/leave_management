@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from django.db.models import Q
 from .models import *
 from django.contrib import messages
-from .forms import EmployeeCreationForm, LeaveApplicationForm
+from .forms import EmployeeCreationForm, LeaveApplicationForm, accountCreation
 from datetime import date, datetime, timedelta
 from time import strftime
 import holidays
@@ -154,9 +154,9 @@ class LeaveUpdateView(UpdateView):
 def employeeDeactivate(request, pk):
     employee = Employee.objects.filter(emp_personal_no=pk)
     if employee.is_active:
-        employee.is_active =False
+        employee.is_active = False
         return redirect('employee_list')
-    templatename='leave_management_app/activate_employee.html'
+    templatename = 'leave_management_app/activate_employee.html'
     context = {'employee': employee}
     return render(request, templatename, context)
 
@@ -392,4 +392,18 @@ def leaveStatusView(request, pk):
                'total_current_year_applied_days': total_current_year_applied_days,
                'annual_leave_eligible_days': annual_leave_eligible_days}
 
+    return render(request, templatename, context)
+
+
+def createuseraccount(request):
+    if request.method == 'POST':
+        form = accountCreation(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Account created successfully')
+            return redirect('EmployeeRegistration')
+    else:
+        form = accountCreation()
+    templatename = 'leave_management_app/useraccount.html'
+    context = {'form': form}
     return render(request, templatename, context)

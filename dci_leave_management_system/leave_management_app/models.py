@@ -55,7 +55,7 @@ class Department(models.Model):
 
 
 class Employee(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     emp_personal_no = models.CharField(max_length=20, primary_key=True)
     employee_firstname = models.CharField(max_length=20)
     employee_lastname = models.CharField(max_length=20)
@@ -78,16 +78,24 @@ class Employee(models.Model):
         return reverse('employee_detail', kwargs={'pk': self.pk})
 
 
-@receiver(post_save, sender=User)
-def create_employee(sender, instance, created, **kwargs):
-    if created:
-        Employee.objects.create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def save_employee(sender, instance, **kwargs):
-    instance.employee.save()
-
+# @receiver(post_save, sender=User)
+# def create_employee(sender, instance, created, **kwargs):
+#     if created:
+#         Employee.objects.create(user=instance)
+#         print('created employee')
+#
+#
+# post_save.connect(create_employee, sender=User)
+#
+#
+# @receiver(post_save, sender=User)
+# def save_employee(sender, instance, **kwargs):
+#     instance.employee.save()
+#     print('employee updated')
+#
+#
+# post_save.connect(save_employee, sender=User)
+#
 
 class Leave_type(models.Model):
     leave_type_name = models.CharField(choices=leave_category_list, max_length=30)
