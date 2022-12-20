@@ -423,7 +423,7 @@ def login_view(request):
             context = {'error': error}
             return render(request, 'accounts/login.html', context)
     else:
-        return redirect(request, 'accounts/login.html')
+        return render(request, 'accounts/login.html')
 
 
 # ------------------------logout view----------------------------------------------

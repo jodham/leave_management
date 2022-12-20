@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{%extends 'leave_management_app/base.html'%}
+{%block title%}Add Employee{%endblock title%}
+{%load crispy_forms_tags%}
+{%block content%}
 
-</body>
-</html>
+<div class="col-lg-8 mt-3 ml-5 shadow-lg content-align-center">
+     <div class="py-5 text-center"><label class="text-info h4">Manage Leave</label></div>
+      <div class="container-fluid">
+          <div class="row shadow-lg justify-content-center">
+              <div class="col-md-6">
+                    <form method="POST">
+                        {% csrf_token %}
+                     <div class="form-group">
+                         <label class="h5"> Username</label>
+                         <input type="text" name="username">
+                     </div>
+
+                     <div class="form-group">
+                         <label class="h5"> Password</label>
+                         <input type="password" name="password">
+                     </div>
+                        <div class="form-group">
+                            <button class="btn btn-outline-info mt-2" type="submit">Login</button>
+                        </div>
+                    </form>
+              </div>
+          </div>
+      </div>
+</div>
+</div>
+{%endblock content%}

@@ -16,11 +16,11 @@
 
           <div class="dropdown-menu" aria-labelledby="dropdownLink">
             <a class="dropdown-item" href="#">Profile</a>
-            <a class="dropdown-item" href="#">Logout</a>
+            <a class="dropdown-item" href="{%url 'logout'%}">Logout</a>
           </div>
       </div>
       {%else%}
-      <a class="nav-item nav-link h5 text-white mx-4" href="#">Login</a>
+      <a class="nav-item nav-link h5 text-white mx-4" href="{%url 'login'%}">Login</a>
       {%endif%}
     </div>
   </div>
