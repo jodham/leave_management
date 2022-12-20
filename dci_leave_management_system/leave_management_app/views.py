@@ -1,3 +1,4 @@
+from django.contrib.auth import authenticate, logout
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from django.db.models import Q
@@ -407,3 +408,25 @@ def createuseraccount(request):
     templatename = 'leave_management_app/useraccount.html'
     context = {'form': form}
     return render(request, templatename, context)
+
+
+# --------------------------login---------------------------------------
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            return redirect('dashboard')
+        else:
+            error = messages.warning(request, f'wrong username or password retry!!!')
+            context = {'error': error}
+            return render(request, 'accounts/login.html', context)
+    else:
+        return redirect(request, 'accounts/login.html')
+
+
+# ------------------------logout view----------------------------------------------
+def logout_view(request):
+    logout(request)
+    return redirect('home')

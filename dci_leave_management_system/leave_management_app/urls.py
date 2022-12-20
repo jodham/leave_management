@@ -32,5 +32,8 @@ urlpatterns = [
     path('application/form/<int:pk>', applicationform, name='application_form'),
 
     path('employee/search', searchEmployeeView, name='search_employee'),
-    path('search/employee', search, name='search')
+    path('search/employee', search, name='search'),
+
+    path('user/login', login_view, name='login'),
+    path('user/logout', logout_view, name='logout')
 ]
