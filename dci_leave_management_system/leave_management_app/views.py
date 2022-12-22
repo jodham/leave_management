@@ -39,6 +39,7 @@ def EmployeeRegistration(request):
     if request.method == 'POST':
         form = EmployeeCreationForm(request.POST)
         if form.is_valid():
+            users = request.GET.get('user')
             email = form.cleaned_data.get('employee_email')
             firstname = form.cleaned_data.get('employee_firstname')
             lastname = form.cleaned_data.get('employee_lastname')
@@ -48,10 +49,10 @@ def EmployeeRegistration(request):
             designation = form.cleaned_data.get('employee_designation')
             pfno = form.cleaned_data.get('emp_personal_no')
             user = User.objects.create_user(username=email, email=email, password=pfno)
-            print(pfno)
             user.save()
 
             employee = Employee()
+            employee.user = users
             employee.emp_personal_no = pfno
             employee.employee_email = email
             employee.employee_firstname = firstname
@@ -403,8 +404,13 @@ def createuseraccount(request):
         form = accountCreation(request.POST)
         if form.is_valid():
             form.save()
+            user = request.POST.get('id')
+            print(user)
             messages.success(request, 'Account created successfully')
-            return redirect('EmployeeRegistration')
+
+            context = {'user': user}
+
+            return redirect('EmployeeRegistration', context)
     else:
         form = accountCreation()
     templatename = 'leave_management_app/useraccount.html'

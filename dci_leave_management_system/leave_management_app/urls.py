@@ -5,7 +5,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('dashboard/', dashboard, name='dashboard'),
 
-    path('create/employee', EmployeeRegistration, name='EmployeeRegistration'),
+    path('create/employee/<int:pk>', EmployeeRegistration, name='EmployeeRegistration'),
 
     path('employee/list', EmployeeListView.as_view(), name='employee_list'),
     path('employee/detail/<int:pk>', EmployeeDetailView.as_view(), name='employee_detail'),

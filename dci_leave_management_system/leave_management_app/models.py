@@ -55,7 +55,7 @@ class Department(models.Model):
 
 
 class Employee(models.Model):
-    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    user = models.CharField(max_length=32)
     emp_personal_no = models.CharField(max_length=20, primary_key=True)
     employee_firstname = models.CharField(max_length=20)
     employee_lastname = models.CharField(max_length=20)
