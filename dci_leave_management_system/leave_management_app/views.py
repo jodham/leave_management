@@ -1,4 +1,5 @@
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import authenticate, logout, login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, DetailView, UpdateView, CreateView
 from django.db.models import Q
@@ -21,6 +22,7 @@ def home(request):
     return render(request, template_name, context)
 
 
+@login_required(login_url='login')
 def dashboard(request):
     template_name = 'leave_management_app/dashboard.html'
     employees_count = Employee.objects.all().count()
@@ -417,6 +419,7 @@ def login_view(request):
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user is not None:
+            login(request, user)
             return redirect('dashboard')
         else:
             error = messages.warning(request, f'wrong username or password retry!!!')
@@ -430,3 +433,12 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect('home')
+
+
+# -------------------------------profile------------------------------------------
+@login_required(login_url='login')
+def profile(request):
+    print(request.user)
+    employee = Employee.objects.filter(Q(user=request.user))
+    context = {'employee': employee}
+    return render(request, 'accounts/profile.html', context)
