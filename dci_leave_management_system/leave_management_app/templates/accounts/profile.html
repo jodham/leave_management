@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{%for object in employee%}
-{{object.employee_firstname}}
+{%extends 'leave_management_app/base.html'%}
+{%block title%}Search Employee{%endblock title%}
+{%load crispy_forms_tags%}
+{%block content%}
+<div class="py-5">profile</div>
+<div class="row p-4" style="height: 95vh; width: 100%; background-color: white; background-attachment: fixed;">
+{%for value in values%}
+    {{value.user}}
 {%endfor%}
-</body>
-</html>
+</div>
+{%endblock content%}

@@ -12,7 +12,7 @@ urlpatterns = [
     path('employee/update/<int:pk>', EmployeeUpdateView.as_view(), name='employee_update'),
     path('employee/activate/<int:pk>', employeeDeactivate, name='activate'),
     path('employee/account/', createuseraccount, name='useraccount'),
-    path('employee/profile', profile, name="profile"),
+    path('employee/profile', user_profile_details, name="profile"),
 
     path('leave/create', LeaveCreateView.as_view(), name='leave_create'),
     path('leave/list', LeaveListView.as_view(), name='leave_list'),

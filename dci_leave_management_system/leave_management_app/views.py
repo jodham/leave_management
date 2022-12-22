@@ -437,8 +437,8 @@ def logout_view(request):
 
 # -------------------------------profile------------------------------------------
 @login_required(login_url='login')
-def profile(request):
-    print(request.user)
-    employee = Employee.objects.filter(Q(user=request.user))
-    context = {'employee': employee}
+def user_profile_details(request):
+    values = Employee.objects.filter(Q(user=request.user))
+    print(values)
+    context = {'values': values}
     return render(request, 'accounts/profile.html', context)
