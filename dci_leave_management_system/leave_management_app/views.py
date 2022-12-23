@@ -403,14 +403,14 @@ def createuseraccount(request):
     if request.method == 'POST':
         form = accountCreation(request.POST)
         if form.is_valid():
+            username = request.GET.get('username')
             form.save()
-            user = request.POST.get('id')
-            print(user)
+            print(username)
             messages.success(request, 'Account created successfully')
 
-            context = {'user': user}
+            context = {'username': username}
 
-            return redirect('EmployeeRegistration', context)
+            return render(request, 'EmployeeRegistration', context)
     else:
         form = accountCreation()
     templatename = 'leave_management_app/useraccount.html'

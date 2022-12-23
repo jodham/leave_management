@@ -30,11 +30,13 @@ class LeaveApplicationForm(forms.ModelForm):
 
 
 class accountCreation(UserCreationForm):
+    email = forms.EmailField(required=True, label='Email')
+
     class Meta:
         model = User
-        fields = ['username', 'password1', 'password2']
+        fields = ['username', 'email', 'password1', 'password2']
 
     def __init__(self, *args, **kwargs):
         super(accountCreation, self).__init__(*args, **kwargs)
-        for fieldname in ['username', 'password1']:
+        for fieldname in ['username', 'email', 'password1']:
             self.fields[fieldname].help_text = None
