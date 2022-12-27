@@ -39,29 +39,7 @@ def EmployeeRegistration(request):
     if request.method == 'POST':
         form = EmployeeCreationForm(request.POST)
         if form.is_valid():
-            users = request.GET.get('user')
-            email = form.cleaned_data.get('employee_email')
-            firstname = form.cleaned_data.get('employee_firstname')
-            lastname = form.cleaned_data.get('employee_lastname')
-            sex = form.cleaned_data.get('employee_gender')
-            category = form.cleaned_data.get('employee_category')
-            department = form.cleaned_data.get('employee_department_id')
-            designation = form.cleaned_data.get('employee_designation')
-            pfno = form.cleaned_data.get('emp_personal_no')
-            user = User.objects.create_user(username=email, email=email, password=pfno)
-            user.save()
-
-            employee = Employee()
-            employee.user = users
-            employee.emp_personal_no = pfno
-            employee.employee_email = email
-            employee.employee_firstname = firstname
-            employee.employee_lastname = lastname
-            employee.employee_gender = sex
-            employee.employee_category = category
-            employee.employee_department_id = department
-            employee.employee_designation = designation
-            employee.save()
+            form.save()
             return redirect('employee_list')
     else:
         form = EmployeeCreationForm()
@@ -448,3 +426,25 @@ def user_profile_details(request):
     print(values)
     context = {'values': values}
     return render(request, 'accounts/profile.html', context)
+
+
+# -----------------------------activate/deactivate----employee--------------------
+
+def deactivate_employee(request, id):
+    if not (request.user.is_authenticated and request.user.is_staff):
+        return redirect('home')
+    employee = get_object_or_404(Employee, emp_personal_no=id)
+    employee.is_active = False
+    employee.save()
+    messages.success(request, 'Employee is deactivated', extra_tags='alert alert-warning alert-dismissible show')
+    return redirect('employee_list')
+
+
+def activate_employee(request, id):
+    if not (request.user.is_authenticated and request.user.is_staff):
+        return redirect('home')
+    employee = get_object_or_404(Employee, emp_personal_no=id)
+    employee.is_active = True
+    employee.save()
+    messages.success(request, 'Employee is activated', extra_tags='alert alert-success alert-dismissible show')
+    return redirect('employee_list')

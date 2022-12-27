@@ -5,14 +5,15 @@ urlpatterns = [
     path('', home, name='home'),
     path('dashboard/', dashboard, name='dashboard'),
 
-    path('create/employee/<int:pk>', EmployeeRegistration, name='EmployeeRegistration'),
+    path('create/employee', EmployeeRegistration, name='EmployeeRegistration'),
 
     path('employee/list', EmployeeListView.as_view(), name='employee_list'),
     path('employee/detail/<int:pk>', EmployeeDetailView.as_view(), name='employee_detail'),
     path('employee/update/<int:pk>', EmployeeUpdateView.as_view(), name='employee_update'),
-    path('employee/activate/<int:pk>', employeeDeactivate, name='activate'),
     path('employee/account/', createuseraccount, name='useraccount'),
     path('employee/profile', user_profile_details, name="profile"),
+    path('employee/<int:id>', deactivate_employee, name='deactivateEmployee'),
+    path('employee/activate/<int:id>', activate_employee, name='activateEmployee'),
 
     path('leave/create', LeaveCreateView.as_view(), name='leave_create'),
     path('leave/list', LeaveListView.as_view(), name='leave_list'),

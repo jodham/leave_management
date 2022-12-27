@@ -71,13 +71,23 @@
                     <div class="col h5">{{object.date_created}}</div>
                 </div>
 
+                <div class="row mt-3 shadow-sm">
+                    <div class="col h5">Active:</div>
+                    <div class="col h5">{{object.is_active}}</div>
+                </div>
             </div>
         </div>
         <div class="row py-5 ml-4 mr-4 shadow-lg rounded">
             <div class="col-2"><a href="{%url 'employee_list'%}" class="btn btn-secondary"> Back</a></div>
-            <div class="col-2"><a href="{%url 'employee_update' object.emp_personal_no%}" class="btn btn-success"> Update</a></div>
-            <div class="col-2"><a href="#" class="btn btn-danger"> Delete</a></div>
+            <div class="col-2"><a href="{%url 'employee_update' object.emp_personal_no%}" class="btn btn-primary"> Update</a></div>
+            {%if object.is_active == True %}
+            <div class="col-2"><a href="{%url 'deactivateEmployee' object.emp_personal_no%}" class="btn btn-warning"> Deactivate</a></div>
             <div class="col-2"><a href="{%url 'leave_status' object.emp_personal_no%}" class="btn btn-info"> Apply Leave</a></div>
+            {%else%}
+            <div class="col-2"><a href="{%url 'activateEmployee' object.emp_personal_no%}" class="btn btn-success ">Activate</a> </div>
+            <div class="col-2"><label class="text-danger">can't apply, employee is not active</label> </div>
+            {%endif%}
+
         </div>
 
     </div>

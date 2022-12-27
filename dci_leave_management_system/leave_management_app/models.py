@@ -55,7 +55,6 @@ class Department(models.Model):
 
 
 class Employee(models.Model):
-    user = models.CharField(max_length=32)
     emp_personal_no = models.CharField(max_length=20, primary_key=True)
     employee_firstname = models.CharField(max_length=20)
     employee_lastname = models.CharField(max_length=20)
@@ -65,7 +64,7 @@ class Employee(models.Model):
     employee_gender = models.CharField(choices=gender, max_length=6)
     employee_category = models.CharField(choices=employee_category_list, max_length=10)
     date_created = models.DateTimeField(default=timezone.now)
-    date_employed = models.DateField(default=timezone.now)
+    date_employed = models.DateField()
     is_active = models.BooleanField(default=True)
 
     def __str__(self):

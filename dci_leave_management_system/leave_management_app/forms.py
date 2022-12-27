@@ -7,18 +7,19 @@ from django.contrib.auth.forms import UserCreationForm
 
 class EmployeeCreationForm(forms.ModelForm):
     employee_email = forms.EmailField()
+    date_employed = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
 
     class Meta:
         model = Employee
-        fields = ['user', 'emp_personal_no', 'employee_firstname', 'employee_lastname',
+        fields = ['emp_personal_no', 'employee_firstname', 'employee_lastname',
                   'employee_email', 'employee_department_id',
-                  'employee_designation', 'employee_gender', 'employee_category']
+                  'employee_designation', 'employee_gender', 'employee_category', 'date_employed']
 
     def __init__(self, *args, **kwargs):
         super(EmployeeCreationForm, self).__init__(*args, **kwargs)
-        for fieldname in ['user', 'emp_personal_no', 'employee_firstname', 'employee_lastname',
+        for fieldname in ['emp_personal_no', 'employee_firstname', 'employee_lastname',
                           'employee_email', 'employee_department_id',
-                          'employee_designation', 'employee_gender', 'employee_category']:
+                          'employee_designation', 'employee_gender', 'employee_category', 'date_employed']:
             self.fields[fieldname].help_text = None
 
 
