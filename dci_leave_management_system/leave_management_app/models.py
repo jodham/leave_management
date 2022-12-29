@@ -9,9 +9,9 @@ from time import strftime, gmtime
 
 # Create your models here.
 employee_category_list = [
-    ('CV', 'Civilian'),
-    ('Bip', 'Below IP'),
-    ('Aip', 'IP&Above'),
+    ('Civilian', 'Civilian'),
+    ('Below IP', 'Below IP'),
+    ('IP&Above', 'IP&Above'),
 ]
 
 gender = [
@@ -60,7 +60,7 @@ class Employee(models.Model):
     employee_lastname = models.CharField(max_length=20)
     employee_email = models.EmailField()
     employee_department_id = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)
-    employee_designation = models.CharField(max_length=6)
+    employee_designation = models.CharField(max_length=20)
     employee_gender = models.CharField(choices=gender, max_length=6)
     employee_category = models.CharField(choices=employee_category_list, max_length=10)
     date_created = models.DateTimeField(default=timezone.now)

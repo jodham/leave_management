@@ -17,9 +17,7 @@ annual_leave_max_days_for_employees_above_ip = 36
 # Create your views here.
 def home(request):
     template_name = 'leave_management_app/index.html'
-    h_days = holidays.KE()
-    context = {'h_days': h_days}
-    return render(request, template_name, context)
+    return render(request, template_name)
 
 
 @login_required(login_url='login')
@@ -280,7 +278,7 @@ def create_leave_application(request, id):
         while business_days_to_add > 0:
             date_frmt_start += timedelta(days=1)
             weekday = date_frmt_start.weekday()
-            if weekday >= 5:  # sunday = 6
+            if weekday >= 5 or weekday in holidays.KE().items():  # sunday = 6
                 continue
             business_days_to_add -= 1
 
@@ -383,12 +381,9 @@ def createuseraccount(request):
         if form.is_valid():
             username = request.GET.get('username')
             form.save()
-            print(username)
             messages.success(request, 'Account created successfully')
-
             context = {'username': username}
-
-            return render(request, 'EmployeeRegistration', context)
+            return redirect('dashboard', context)
     else:
         form = accountCreation()
     templatename = 'leave_management_app/useraccount.html'
