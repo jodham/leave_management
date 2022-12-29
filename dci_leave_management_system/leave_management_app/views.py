@@ -443,3 +443,7 @@ def activate_employee(request, id):
     employee.save()
     messages.success(request, 'Employee is activated', extra_tags='alert alert-success alert-dismissible show')
     return redirect('employee_list')
+
+def reports(request):
+    templatename = 'leave_management_app/reports.html'
+    return render(request, templatename)

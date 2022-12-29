@@ -36,6 +36,8 @@ urlpatterns = [
     path('employee/search', searchEmployeeView, name='search_employee'),
     path('search/employee', search, name='search'),
 
+    path('reports/', reports, name='reports'),
+
     path('user/login', login_view, name='login'),
     path('user/logout', logout_view, name='logout')
 ]
