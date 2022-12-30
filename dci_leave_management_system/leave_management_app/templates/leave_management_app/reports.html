@@ -62,10 +62,18 @@
 
                 <div class="row">
                     <div class="col-6 col-md-6">
-                        <input type="search" placeholder="enter pf no/first name" class="form-control me-2" name="pfno">
-                    </div>
-                    <div class="col-6 col-md-6">
-                            <a class="btn btn-info" href="#">Generate</a>
+                        <form method="POST" action="{%url 'search'%}">
+						{% csrf_token %}
+							<fieldset class="form-group">
+									<div class="row">
+										<div class="col-6 col-md-6">
+											<input type="search" placeholder="enter pf no/first name" class="form-control me-2" id='pfno'  name="pfno">
+										</div>
+									</div>
+							</fieldset>
+
+								<button class="btn btn-info mt-2 mb-2" type="submit">Generate</button>
+						</form>
                     </div>
                 </div>
 

@@ -444,6 +444,7 @@ def activate_employee(request, id):
     messages.success(request, 'Employee is activated', extra_tags='alert alert-success alert-dismissible show')
     return redirect('employee_list')
 
+    # --------------------------------system reports-------------------------------------------
 def reports(request):
     templatename = 'leave_management_app/reports.html'
     return render(request, templatename)
