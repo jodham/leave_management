@@ -195,6 +195,7 @@ Todaydate = date.today()
 currentyear = strftime("%Y")
 todaysdate = date.today()
 intcurrentyear = int(currentyear)
+intnextyear = intcurrentyear + 1
 timelimit = date(intcurrentyear, 7, 31)
 
 if Todaydate > timelimit:
@@ -290,7 +291,7 @@ def create_leave_application(request, id):
         start_date = request.POST.get('startdate')
 
         leave_start_date_format = datetime.strptime(start_date, "%Y-%m-%d")
-        print(annual_leave_eligible_days)
+
         if int(days_applied) > int(annual_leave_eligible_days):
             template_name = 'leave_management_app/leave_application_form.html'
             error = messages.warning(request, 'days applied greater than eligible days: try fewer days')
@@ -304,6 +305,15 @@ def create_leave_application(request, id):
             context = {'error': error, 'employee': employee, 'emp': emp, 'year': year, 'leave_objects': leave_objects,
                        'days_applied': days_applied, 'start_date': start_date}
             return render(request, template_name, context)
+
+        for yr in range(intcurrentyear, intnextyear):
+
+            if leave_start_date_format.weekday() >= 5 or leave_start_date_format in holidays.KE(years=yr).items():
+                template_name = 'leave_management_app/leave_application_form.html'
+                error = messages.warning(request, 'chosen start date is weekend/holiday choose a weekday that is not a holiday')
+                context = {'error': error, 'employee': employee, 'emp': emp, 'year': year, 'leave_objects': leave_objects,
+                           'days_applied': days_applied, 'start_date': start_date}
+                return render(request, template_name, context)
         else:
 
             application = Leave_application()
