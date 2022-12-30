@@ -71,7 +71,7 @@ class Employee(models.Model):
         return self.fullname()
 
     def fullname(self):
-        return '{} {}'.format(self.employee_firstname, self.employee_lastname)
+        return '{}  {}'.format(self.employee_firstname, self.employee_lastname)
 
     def get_absolute_url(self):
         return reverse('employee_detail', kwargs={'pk': self.pk})

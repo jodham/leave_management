@@ -448,3 +448,11 @@ def activate_employee(request, id):
 def reports(request):
     templatename = 'leave_management_app/reports.html'
     return render(request, templatename)
+
+def employee_report(request, id):
+    templatename = 'leave_management_app/employee_report.html'
+    employee = Employee.objects.get(emp_personal_no=id)
+    leave_objects = Leave_application.objects.filter(Q(Applicant_id=id))
+    organisation = Organisation.objects.all()
+    context = {'employee': employee, 'leave_objects': leave_objects, 'organisation': organisation}
+    return render(request, templatename, context)

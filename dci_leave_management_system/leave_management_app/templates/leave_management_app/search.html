@@ -46,7 +46,7 @@
 											<td>{{employee.employee_department_id}}</td>
 											<td><a class="" href="{%url 'employee_detail' employee.emp_personal_no%}">view</a></td>
 											 {%if request.user.is_superuser%}
-											  <td><a class="" href="#">report</a></td>
+											  <td><a class="" href="{%url 'employee_report' employee.emp_personal_no%}">report</a></td>
 											 {%endif%}
 										</tr>
 									  {%endfor%}

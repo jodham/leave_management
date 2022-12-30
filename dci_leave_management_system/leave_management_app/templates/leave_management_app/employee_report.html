@@ -1,0 +1,94 @@
+{%extends 'leave_management_app/base.html'%}
+{%block title%}Employees List{%endblock title%}
+
+{%block content%}
+<div class="row p-4" style="height: 95vh; width: 100%; background-color: white; background-attachment: fixed;">
+        {%block navbar%}
+            {%include 'navigation/sidenav.html'%}
+        {%endblock navbar%}
+      <div class="col-lg-8 mt-3 ml-5 shadow-lg content-align-center">
+        <div class="py-3 text-center">
+            <label class="text-info h4 py-3">Employee Report</label>
+            <p class="h5 text-secondary text-uppercase">{{employee.fullname}}</p>
+        </div>
+            <div class="container-fluid mt-3 mx-2 shadow-lg">
+
+                <div class="row my-2 p-2 shadow-lg">
+
+                    {%for org in organisation%}
+                        <div class="col-12 text-center text-uppercase h5 py-2">kenya police</div>
+                        <div class="col-12 text-center text-uppercase h5 py-2">{{org.organisation_name}}</div>
+                        <div class="col-12 text-center text-uppercase h5 py-2">{{org.organisation_address}}</div>
+                    {%endfor%}
+                    <div class="py-2 col-12"><hr class="bg-dark h1"></div>
+                    <div class=" col-6 h4 py-2">General report for :</div>
+                    <div class=" col-6 h4 py-2"><span class="text-secondary text-uppercase">{{employee.fullname}}</span></div>
+
+                    <div class=" col-12 text-center text-info h5 py-2">Employee details</div>
+
+                    <div class=" col-6 h5 py-2">First Name :</div>
+                    <div class=" col-6 h5 text-secondary text-capitalize py-2">{{employee.employee_firstname}}</div>
+
+                    <div class=" col-6 h5 py-2">Last Name :</div>
+                    <div class=" col-6 h5 text-secondary text-capitalize py-2">{{employee.employee_lastname}}</div>
+
+                    <div class=" col-6 h5 py-2">Pf No :</div>
+                    <div class=" col-6 h5 text-secondary py-2">{{employee.emp_personal_no}}</div>
+
+                    <div class=" col-6 h5 py-2">Email :</div>
+                    <div class=" col-6 h5 text-secondary py-2">{{employee.employee_email}}</div>
+
+                    <div class=" col-6 h5 py-2">Category :</div>
+                    <div class=" col-6 h5 text-secondary py-2">{{employee.employee_category}}</div>
+
+                    <div class=" col-6 h5 py-2">Department :</div>
+                    <div class=" col-6 h5 text-secondary py-2">{{employee.employee_department_id}}</div>
+
+                    <div class=" col-6 h5 py-2">Designation :</div>
+                    <div class=" col-6 h5 text-secondary py-2">{{employee.employee_designation}}</div>
+
+                    <div class=" col-6 h5 py-2">Gender :</div>
+                    <div class=" col-6 h5 text-secondary py-2">{{employee.employee_gender}}</div>
+
+                    <div class=" col-6 h5 py-2">Date Employed :</div>
+                    <div class=" col-6 h5 text-secondary py-2">{{employee.date_created}}</div>
+
+                    <div class=" col-6 h5 py-2">Active:</div>
+                    <div class=" col-6 h5 text-secondary py-2">{{employee.is_active}}</div>
+
+                    <div class="col-12 text-center text-capitalize h5 py-4">Employee leave report</div>
+
+                    <table class="table mx-2">
+                      <thead>
+                        <tr>
+                          <th scope="col">P.no</th>
+                          <th scope="col">Full name</th>
+                          <th scope="col">Period</th>
+                          <th scope="col">Leave type</th>
+                          <th scope="col">start date</th>
+                          <th scope="col">End date</th>
+
+                          <!--<th scope="col">Job Title</th>-->
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {%for application in leave_objects%}
+                        <tr>
+                          <td><a href="#">{{leave.Applicant_id}}</a></td>
+                          <td>{{application.Applicant}}</td>
+                          <td>{{application.financial_year}}</td>
+                          <td>{{application.leave_type}}</td>
+                          <td>{{application.leave_starting_date}}</td>
+                          <td>{{application.leave_end_date}}</td>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                     </table>
+
+
+                </div>
+
+            </div>
+      </div>
+</div>
+{%endblock content%}
