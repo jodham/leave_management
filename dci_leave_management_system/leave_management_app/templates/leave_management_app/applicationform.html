@@ -119,14 +119,6 @@
         </div>
     </div>
 </div>
-<script>
-function printContent(applicationform){
-    var restorepage = document.body.innerHTML;
-    var printContent = document.getElementById(applicationform).innerHTML;
-    document.body.innerHTML = printContent;
-    window.print();
-    document.body.innerHTML = restorepage;
-    }
-</script>
+
 {%endblock content%}
 

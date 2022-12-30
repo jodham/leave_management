@@ -13,7 +13,7 @@
         </div>
             <div class="container-fluid mt-3 mx-2 shadow-lg">
 
-                <div class="row my-2 p-2 shadow-lg">
+                <div class="row my-2 p-2 shadow-lg" id="applicationform">
 
                     {%for org in organisation%}
                         <div class="col-12 text-center text-uppercase h5 py-2">kenya police</div>
@@ -21,43 +21,96 @@
                         <div class="col-12 text-center text-uppercase h5 py-2">{{org.organisation_address}}</div>
                     {%endfor%}
                     <div class="py-2 col-12"><hr class="bg-dark h1"></div>
-                    <div class=" col-6 h4 py-2">General report for :</div>
-                    <div class=" col-6 h4 py-2"><span class="text-secondary text-uppercase">{{employee.fullname}}</span></div>
 
+                    <div class="container">
+                        <div class="row">
+                            <div class=" col-6 h4 py-2">General report for :</div>
+                            <div class=" col-6 h4 py-2"><span class="text-secondary text-uppercase">{{employee.fullname}}</span></div>
+                        </div>
+                    </div>
                     <div class=" col-12 text-center text-info h5 py-2">Employee details</div>
 
-                    <div class=" col-6 h5 py-2">First Name :</div>
-                    <div class=" col-6 h5 text-secondary text-capitalize py-2">{{employee.employee_firstname}}</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class=" col-6 h5 py-2">First Name :</div>
+                            <div class=" col-6 h5 text-secondary text-capitalize py-2">{{employee.employee_firstname}}</div>
+                        </div>
+                    </div>
 
-                    <div class=" col-6 h5 py-2">Last Name :</div>
-                    <div class=" col-6 h5 text-secondary text-capitalize py-2">{{employee.employee_lastname}}</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class=" col-6 h5 py-2">Last Name :</div>
+                            <div class=" col-6 h5 text-secondary text-capitalize py-2">{{employee.employee_lastname}}</div>
+                        </div>
+                    </div>
 
-                    <div class=" col-6 h5 py-2">Pf No :</div>
-                    <div class=" col-6 h5 text-secondary py-2">{{employee.emp_personal_no}}</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class=" col-6 h5 py-2">Pf No :</div>
+                            <div class=" col-6 h5 text-secondary py-2">{{employee.emp_personal_no}}</div>
+                        </div>
+                    </div>
 
-                    <div class=" col-6 h5 py-2">Email :</div>
-                    <div class=" col-6 h5 text-secondary py-2">{{employee.employee_email}}</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class=" col-6 h5 py-2">Email :</div>
+                            <div class=" col-6 h5 text-secondary py-2">{{employee.employee_email}}</div>
+                        </div>
+                    </div>
 
-                    <div class=" col-6 h5 py-2">Category :</div>
-                    <div class=" col-6 h5 text-secondary py-2">{{employee.employee_category}}</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class=" col-6 h5 py-2">Category :</div>
+                            <div class=" col-6 h5 text-secondary py-2">{{employee.employee_category}}</div>
+                        </div>
+                    </div>
 
-                    <div class=" col-6 h5 py-2">Department :</div>
-                    <div class=" col-6 h5 text-secondary py-2">{{employee.employee_department_id}}</div>
 
-                    <div class=" col-6 h5 py-2">Designation :</div>
-                    <div class=" col-6 h5 text-secondary py-2">{{employee.employee_designation}}</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class=" col-6 h5 py-2">Department :</div>
+                            <div class=" col-6 h5 text-secondary py-2">{{employee.employee_department_id}}</div>
+                        </div>
+                    </div>
 
-                    <div class=" col-6 h5 py-2">Gender :</div>
-                    <div class=" col-6 h5 text-secondary py-2">{{employee.employee_gender}}</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class=" col-6 h5 py-2">Designation :</div>
+                            <div class=" col-6 h5 text-secondary py-2">{{employee.employee_designation}}</div>
+                        </div>
+                    </div>
 
-                    <div class=" col-6 h5 py-2">Date Employed :</div>
-                    <div class=" col-6 h5 text-secondary py-2">{{employee.date_created}}</div>
 
-                    <div class=" col-6 h5 py-2">Active:</div>
-                    <div class=" col-6 h5 text-secondary py-2">{{employee.is_active}}</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class=" col-6 h5 py-2">Gender :</div>
+                            <div class=" col-6 h5 text-secondary py-2">{{employee.employee_gender}}</div>
+                        </div>
+                    </div>
 
-                    <div class="col-12 text-center text-capitalize h5 py-4">Employee leave report</div>
+                    <div class="container">
+                        <div class="row">
+                            <div class=" col-6 h5 py-2">Date Employed :</div>
+                            <div class=" col-6 h5 text-secondary py-2">{{employee.date_created}}</div>
+                        </div>
+                    </div>
 
+                    <div class="container">
+                        <div class="row">
+                            <div class=" col-6 h5 py-2">Active:</div>
+                            <div class=" col-6 h5 text-secondary py-2">{{employee.is_active}}</div>
+                        </div>
+                    </div>
+
+                    <div class="py-2 col-12"><hr class="bg-dark h1"></div>
+
+                    <div class="col-12 text-center text-capitalize h5 py-2">Employee leave report</div>
+
+                    {%if total_applications == 0%}
+                    <div class="col-12 text-center text-capitalize h5 py-4">
+                        no application by :
+                        <span class="h4 text-capitalize text-secondary"> {{employee.fullname}}</span></div>
+                    {%else%}
                     <table class="table mx-2">
                       <thead>
                         <tr>
@@ -74,7 +127,7 @@
                       <tbody>
                       {%for application in leave_objects%}
                         <tr>
-                          <td><a href="#">{{leave.Applicant_id}}</a></td>
+                          <td>{{application.Applicant_id}}</td>
                           <td>{{application.Applicant}}</td>
                           <td>{{application.financial_year}}</td>
                           <td>{{application.leave_type}}</td>
@@ -84,9 +137,15 @@
                         {% endfor %}
                       </tbody>
                      </table>
-
+                    {%endif%}
 
                 </div>
+
+                <div class="row shadow-sm mt-4">
+                <div class="col-12 text-center">
+                    <button class="btn-info" onclick="printContent('applicationform')">Print</button>
+                </div>
+               </div>
 
             </div>
       </div>

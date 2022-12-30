@@ -453,6 +453,8 @@ def employee_report(request, id):
     templatename = 'leave_management_app/employee_report.html'
     employee = Employee.objects.get(emp_personal_no=id)
     leave_objects = Leave_application.objects.filter(Q(Applicant_id=id))
+    total_applications = leave_objects.all().count()
     organisation = Organisation.objects.all()
-    context = {'employee': employee, 'leave_objects': leave_objects, 'organisation': organisation}
+    context = {'employee': employee, 'leave_objects': leave_objects, 'organisation': organisation,
+               'total_applications': total_applications}
     return render(request, templatename, context)
