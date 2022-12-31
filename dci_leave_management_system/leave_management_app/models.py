@@ -114,6 +114,7 @@ class Leave_application(models.Model):
     leave_type = models.ForeignKey(Leave_type, on_delete=models.CASCADE)
     medical_certificate = models.BooleanField(default=False)
     no_of_days_applied = models.IntegerField(default=30)
+    remaining_leave_days = models.CharField(max_length=2)
     leave_application_date = models.DateTimeField(default=timezone.now)
     leave_starting_date = models.DateField()
     leave_end_date = models.DateField()

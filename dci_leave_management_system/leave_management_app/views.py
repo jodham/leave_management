@@ -282,7 +282,8 @@ def create_leave_application(request, id):
             if weekday >= 5 or weekday in holidays.KE().items():  # sunday = 6
                 continue
             business_days_to_add -= 1
-
+        remaining_leave_days = int(annual_leave_eligible_days) - int(days_applied_to_add)
+        print(remaining_leave_days)
         applicant_id = request.POST.get('application_id')
         financial_yr = request.POST.get('financial_yr')
         leave_id = request.POST.get('leave_id')
@@ -310,8 +311,10 @@ def create_leave_application(request, id):
 
             if leave_start_date_format.weekday() >= 5 or leave_start_date_format in holidays.KE(years=yr).items():
                 template_name = 'leave_management_app/leave_application_form.html'
-                error = messages.warning(request, 'chosen start date is weekend/holiday choose a weekday that is not a holiday')
-                context = {'error': error, 'employee': employee, 'emp': emp, 'year': year, 'leave_objects': leave_objects,
+                error = messages.warning(request, 'chosen start date is weekend/holiday choose a weekday that is not '
+                                                  'a holiday')
+                context = {'error': error, 'employee': employee, 'emp': emp, 'year': year,
+                           'leave_objects': leave_objects,
                            'days_applied': days_applied, 'start_date': start_date}
                 return render(request, template_name, context)
         else:
@@ -321,6 +324,7 @@ def create_leave_application(request, id):
             application.financial_year = financial_yr
             application.no_of_days_applied = days_applied
             application.leave_type_id = leave_id
+            application.remaining_leave_days = remaining_leave_days
             application.leave_starting_date = start_date
             application.leave_end_date = date_frmt_start
             application.save()
@@ -455,9 +459,12 @@ def activate_employee(request, id):
     return redirect('employee_list')
 
     # --------------------------------system reports-------------------------------------------
+
+
 def reports(request):
     templatename = 'leave_management_app/reports.html'
     return render(request, templatename)
+
 
 def employee_report(request, id):
     templatename = 'leave_management_app/employee_report.html'
