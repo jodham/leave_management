@@ -1,0 +1,107 @@
+{%extends 'leave_management_app/base.html'%}
+{%block title%}Employees List{%endblock title%}
+
+{%block content%}
+<div class="row p-4" style="height: 95vh; width: 100%; background-color: white; background-attachment: fixed;">
+        {%block navbar%}
+            {%include 'navigation/sidenav.html'%}
+        {%endblock navbar%}
+
+    <div class="col-lg-8 mt-3 ml-5 shadow-lg">
+        <div class="py-5 text-center"><label class="text-info h4">System Report</label></div>
+        <div class="container-fluid mt-3 mx-2 shadow-lg">
+            <div class="row my-2 p-2 shadow-lg" id="applicationform">
+
+            {%for org in organisation%}
+                <div class="col-12 text-center text-uppercase h5 py-2">kenya police</div>
+                <div class="col-12 text-center text-uppercase h5 py-2">{{org.organisation_name}}</div>
+                <div class="col-12 text-center text-uppercase h5 py-2">{{org.organisation_address}}</div>
+            {%endfor%}
+            <div class="py-2 col-12"><hr class="bg-dark h1"></div>
+
+            <div class="container">
+                 <div class="row">
+                    <div class="col-6 text-center h5 py-2">Custom report for the year :</div>
+                    <div class="col-6 text-center text-secondary h5 py-2">Current</div>
+                 </div>
+            </div>
+
+            <div class="col-12 text-center text-secondary h4 py-2">Leave Statistics</div>
+
+           <div class="container">
+              <div class="row">
+                  <div class="col-6 h5 text-capitalize py-2">types of leave :</div>
+                  <div class="col-6 text-center h5 py-2"><span>Total :</span> {{leaves_total}}</div>
+              </div>
+           </div>
+
+<!--         leave type display table   -->
+
+           <table class="table mx-2 mt-4">
+              <thead>
+                    <tr>
+                      <th scope="col">No.</th>
+                      <th scope="col">Leave Name</th>
+                      <th scope="col">Duration</th>
+                      <th scope="col">Description</th>
+                    </tr>
+              </thead>
+              <tbody>
+           {%for leave in leave_objects%}
+                 <tr>
+                      <td>{{leave.id}}</td>
+                      <td>{{leave.leave_type_name}}</td>
+                      <td>{{leave.leave_duration}}</td>
+                      <td>{{leave.leave_type_description}}</td>
+                 </tr>
+           {%endfor%}
+              </tbody>
+           </table>
+
+            <div class="container py-3">
+                 <div class="row">
+                    <div class="col-6 h5 py-2">Leave Applications :</div>
+                    <div class="col-6 text-center text-secondary h5 py-2"><span>Total :</span> {{leave_application_total}}</div>
+                 </div>
+            </div>
+
+<!--leave application table data-->
+            <table class="table mx-2 mt-4">
+              <thead>
+                    <tr>
+                       <th scope="col">P.no</th>
+                       <th scope="col">Full name</th>
+                       <th scope="col">Period</th>
+                       <th scope="col">Leave type</th>
+                        <th scope="col">Days Applied</th>
+                        <th scope="col">Days remained</th>
+                       <th scope="col">start date</th>
+                       <th scope="col">End date</th>
+                    </tr>
+              </thead>
+              <tbody>
+           {%for application in leave_applications%}
+                 <tr>
+                      <td>{{application.Applicant_id}}</td>
+                      <td class="text-capitalize">{{application.Applicant}}</td>
+                      <td>{{application.financial_year}}</td>
+                      <td>{{application.leave_type}}</td>
+                      <td>{{application.no_of_days_applied}}</td>
+                      <td>{{application.remaining_leave_days}}</td>
+                      <td>{{application.leave_starting_date}}</td>
+                      <td>{{application.leave_end_date}}</td>
+
+                 </tr>
+           {%endfor%}
+              </tbody>
+           </table>
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+{%endblock content%}

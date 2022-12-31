@@ -475,3 +475,16 @@ def employee_report(request, id):
     context = {'employee': employee, 'leave_objects': leave_objects, 'organisation': organisation,
                'total_applications': total_applications}
     return render(request, templatename, context)
+
+def custom_report(request):
+    templatename = 'leave_management_app/custom_report.html'
+    organisation = Organisation.objects.all()
+    leave_objects = Leave_type.objects.all()
+    leaves_total = leave_objects.count()
+    leave_applications = Leave_application.objects.all()
+    leave_application_total = leave_applications.count()
+    employee = Employee.objects.all()
+    context = {'employee': employee, 'organisation': organisation,
+               'leaves_total': leaves_total, 'leave_objects': leave_objects,
+               'leave_applications': leave_applications, 'leave_application_total': leave_application_total}
+    return render(request, templatename, context)
