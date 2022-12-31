@@ -479,12 +479,34 @@ def employee_report(request, id):
 def custom_report(request):
     templatename = 'leave_management_app/custom_report.html'
     organisation = Organisation.objects.all()
+
     leave_objects = Leave_type.objects.all()
     leaves_total = leave_objects.count()
+
     leave_applications = Leave_application.objects.all()
+
     leave_application_total = leave_applications.count()
+
     employee = Employee.objects.all()
+    active_employees = employee.filter(Q(is_active='True'))
+    inactive_employees = employee.filter(Q(is_active='False'))
+
+    total_aboveIp_employees = employee.filter(Q(employee_category='IP&Above')).count()
+    total_belowIP_employees = employee.filter(Q(employee_category='Below IP')).count()
+    total_civilian_employees = employee.filter(Q(employee_category='Civilian')).count()
+
+    total_active_employees = active_employees.count()
+    total_inactive_employees = inactive_employees.count()
+
+    departments = Department.objects.all()
+    total_departments = departments.count()
     context = {'employee': employee, 'organisation': organisation,
                'leaves_total': leaves_total, 'leave_objects': leave_objects,
-               'leave_applications': leave_applications, 'leave_application_total': leave_application_total}
+               'leave_applications': leave_applications, 'leave_application_total': leave_application_total,
+               'total_active_employees': total_active_employees, 'active_employees': active_employees,
+               'inactive_employees': inactive_employees, 'total_inactive_employees': total_inactive_employees,
+               'total_aboveIp_employees': total_aboveIp_employees, 'total_belowIP_employees': total_belowIP_employees,
+               'total_civilian_employees': total_civilian_employees, 'departments': departments,
+               'total_departments': total_departments
+                }
     return render(request, templatename, context)
