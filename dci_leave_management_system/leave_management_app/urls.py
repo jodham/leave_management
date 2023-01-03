@@ -39,6 +39,7 @@ urlpatterns = [
     path('reports/', reports, name='reports'),
     path('employee/report/<int:id>', employee_report, name='employee_report'),
     path('reports/custom/', custom_report, name="custom_report"),
+   # path('reports/usage/', usage_report, name='usage_report'),
 
     path('user/login', login_view, name='login'),
     path('user/logout', logout_view, name='logout')

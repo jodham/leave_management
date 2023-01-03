@@ -396,8 +396,8 @@ def createuseraccount(request):
             username = request.GET.get('username')
             form.save()
             messages.success(request, 'Account created successfully')
-            context = {'username': username}
-            return redirect('dashboard', context)
+
+            return redirect('dashboard')
     else:
         form = accountCreation()
     templatename = 'leave_management_app/useraccount.html'
@@ -510,3 +510,11 @@ def custom_report(request):
                'total_departments': total_departments
                 }
     return render(request, templatename, context)
+
+# -----------------------usage report-------------------------------
+# def usage_report(request):
+#     templatename = 'leave_management_app/usage_report.html'
+#     if request.method == 'POST':
+#
+#     context = {}
+#     return render(request, templatename, context)

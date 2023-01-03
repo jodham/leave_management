@@ -65,36 +65,7 @@
                  </div>
             </div>
 
-<!--leave application table data-->
-            <table class="table mx-2 mt-4">
-              <thead>
-                    <tr>
-                       <th scope="col">P.no</th>
-                       <th scope="col">Full name</th>
-                       <th scope="col">Period</th>
-                       <th scope="col">Leave type</th>
-                        <th scope="col">Days Applied</th>
-                        <th scope="col">Days remained</th>
-                       <th scope="col">start date</th>
-                       <th scope="col">End date</th>
-                    </tr>
-              </thead>
-              <tbody>
-           {%for application in leave_applications%}
-                 <tr>
-                      <td>{{application.Applicant_id}}</td>
-                      <td class="text-capitalize">{{application.Applicant}}</td>
-                      <td>{{application.financial_year}}</td>
-                      <td>{{application.leave_type}}</td>
-                      <td>{{application.no_of_days_applied}}</td>
-                      <td>{{application.remaining_leave_days}}</td>
-                      <td>{{application.leave_starting_date}}</td>
-                      <td>{{application.leave_end_date}}</td>
 
-                 </tr>
-           {%endfor%}
-              </tbody>
-           </table>
 
             <div class="col-12 text-center text-secondary h4 py-2">Employee Statistis</div>
 
@@ -219,7 +190,7 @@
                 <button class="btn-info" onclick="printContent('applicationform')">Print</button>
             </div>
            </div>
-        
+
         </div>
 
 
