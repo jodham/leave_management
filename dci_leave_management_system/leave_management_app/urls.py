@@ -41,6 +41,7 @@ urlpatterns = [
     path('reports/custom/', custom_report, name="custom_report"),
    # path('reports/usage/', usage_report, name='usage_report'),
 
+    path('users/', UsersListView.as_view(), name='available_users'),
     path('user/login', login_view, name='login'),
     path('user/logout', logout_view, name='logout')
 ]

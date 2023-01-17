@@ -61,6 +61,7 @@ class LeaveListView(ListView):
 class UsersListView(ListView):
     model = User
     context_object_name = 'users'
+    template_name = 'leave_management_app/user_list.html'
 
 class DepartmentListView(ListView):
     model = Department

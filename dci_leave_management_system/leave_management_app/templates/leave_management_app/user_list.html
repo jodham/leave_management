@@ -26,7 +26,8 @@
               {%for i in users %}
                 <tr>
                   <td>{{i.id}}</td>
-                  <td>{{i.username}}</td>
+                  <td class="text-capitalize">{{i.username}}</td>
+                  <td>{{i.email}}</td>
                   <td>{{i.is_staff}}</td>
                   <td>{{i.is_superuser}}</td>
                 </tr>
