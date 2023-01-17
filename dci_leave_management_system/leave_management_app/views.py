@@ -58,6 +58,9 @@ class LeaveListView(ListView):
     context_object_name = 'leaves'
     template_name = 'leave_type_list.html'
 
+class UsersListView(ListView):
+    model = User
+    context_object_name = 'users'
 
 class DepartmentListView(ListView):
     model = Department
