@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.db import models
@@ -76,6 +76,11 @@ class Employee(models.Model):
     def get_absolute_url(self):
         return reverse('employee_detail', kwargs={'pk': self.pk})
 
+    def add_to_staff_group(sender, instance, created, **kwargs):
+        if created:
+            staff_group = Group.objects.get(name="staff")
+            instance.groups.add(staff_group)
+    post_save.connect(add_to_staff_group, sender=User)
 
 # @receiver(post_save, sender=User)
 # def create_employee(sender, instance, created, **kwargs):
